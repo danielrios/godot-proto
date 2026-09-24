@@ -18,20 +18,25 @@ text, tests run headless, no GUI clicking required.
   - `test/unit/` — GUT tests (`test_*.gd`).
 
 ## The test gate (authoritative)
-A change is **done** only when the headless GUT suite is green. Reading the diff
-is not evidence.
+A change is **done** only when `./scripts/run_tests.sh` is green. Reading the
+diff is not evidence.
 
 ```bash
-./scripts/run_tests.sh          # runs GUT headless, exits non-zero on failure
-# or explicitly:
+./scripts/run_tests.sh          # reimport + gdlint + gdformat --check + GUT
+# or just the tests:
 godot --headless -s addons/gut/gut_cmdln.gd -gexit
 ```
 
-- Put game rules in the **pure** classes (`GameState`, `Movement`) and test them
-  directly — no `InputEvent`, no frames, no physics.
+The gate runs, in order: a headless `--import` (registers `class_name`s),
+`gdlint` + `gdformat --check` (skipped with a notice if gdtoolkit is absent),
+then the full GUT suite. It exits non-zero on any failure.
+
+- Put game rules in the **pure** classes (`GameState`, `Movement`, `Countdown`)
+  and test them directly — no `InputEvent`, no frames, no physics.
 - A green suite proves only what it exercises. Behavior that needs the real
-  scene tree (signals firing, `body_entered`) needs an integration test that
-  instances the scene, not a pure unit test.
+  scene tree (signals firing, `body_entered`, `_process`) needs an
+  **integration test** in `test/integration/` that instances the scene, not a
+  pure unit test.
 
 ## GUT (vendored)
 GUT (Godot Unit Test) **v9.7.1 is committed** at `addons/gut/` — no install

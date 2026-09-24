@@ -81,7 +81,7 @@ func test_restart_only_offered_after_game_over() -> void:
 	# disable the node's live _process first, otherwise its own loop would call
 	# the real get_tree().reload_current_scene() (which errors / tears down the
 	# GUT runner, since _main is an added child, not the current_scene). The
-	# true live scene reload is covered by the playtest-pilot runtime check.
+	# true live scene reload is best confirmed by a manual runtime playtest.
 	_main.set_process(false)
 
 	Input.action_press("restart")
