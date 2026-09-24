@@ -1,0 +1,14 @@
+# Godot 4
+.godot/
+.import/
+export.cfg
+export_presets.cfg
+*.translation
+
+# Editor / OS
+.DS_Store
+*.tmp
+
+# godot-mcp-runtime transient bridge artifacts (auto-created only while a
+# scene is running; the server also self-adds this, kept here for safety)
+.mcp/
