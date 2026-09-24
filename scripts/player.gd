@@ -3,7 +3,8 @@ extends CharacterBody2D
 
 @export var speed: float = 140.0
 
-func _physics_process(delta: float) -> void:
+
+func _physics_process(_delta: float) -> void:
 	var pressed := {
 		"move_left": Input.is_action_pressed("move_left"),
 		"move_right": Input.is_action_pressed("move_right"),

@@ -6,9 +6,11 @@ extends RefCounted
 var time_left: float
 var _expired: bool = false
 
+
 func _init(seconds: float = 30.0) -> void:
 	time_left = maxf(0.0, seconds)
 	_expired = time_left == 0.0
+
 
 ## Advance the clock by `delta` seconds. Returns true ONLY on the tick that
 ## crosses zero (edge, not level) so the caller fires game-over exactly once.
@@ -21,8 +23,10 @@ func tick(delta: float) -> bool:
 		return true
 	return false
 
+
 func is_expired() -> bool:
 	return _expired
+
 
 ## Whole seconds remaining, for HUD display (ceil so "1" shows until true 0).
 func display_seconds() -> int:

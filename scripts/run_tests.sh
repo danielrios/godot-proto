@@ -28,4 +28,21 @@ fi
 echo "[gate] importing project (registers GUT + project class_names)…"
 "$GODOT_BIN" --headless --import >/dev/null 2>&1 || true
 
+# GDScript lint + format gate (gdtoolkit). Optional: if gdlint/gdformat are not
+# installed (pipx install gdtoolkit), we skip with a notice rather than fail, so
+# the suite still runs on a machine without the tool. When present, a lint error
+# or a formatting drift fails the gate before the tests run.
+GDLINT="${GDLINT:-$(command -v gdlint || echo "$HOME/.local/bin/gdlint")}"
+GDFORMAT="${GDFORMAT:-$(command -v gdformat || echo "$HOME/.local/bin/gdformat")}"
+GD_SOURCES=(scripts/*.gd test/unit/*.gd test/integration/*.gd)
+if [[ -x "$GDLINT" && -x "$GDFORMAT" ]]; then
+	echo "[gate] gdlint…"
+	"$GDLINT" "${GD_SOURCES[@]}" || { echo "ERROR: gdlint found problems." >&2; exit 1; }
+	echo "[gate] gdformat --check…"
+	"$GDFORMAT" --check "${GD_SOURCES[@]}" || {
+		echo "ERROR: gdformat drift — run: $GDFORMAT ${GD_SOURCES[*]}" >&2; exit 1; }
+else
+	echo "[gate] gdtoolkit not found — skipping lint/format (pipx install gdtoolkit)"
+fi
+
 exec "$GODOT_BIN" --headless -s addons/gut/gut_cmdln.gd -gexit

@@ -8,10 +8,12 @@ const MAIN := preload("res://scenes/main.tscn")
 
 var _main: Node2D
 
+
 func before_each() -> void:
 	_main = MAIN.instantiate()
 	add_child_autofree(_main)
 	await get_tree().process_frame  # let _ready run
+
 
 func test_main_scene_has_controller_script_attached() -> void:
 	# Guards the exact regression the reviewer caught: a resave dropping the
@@ -19,15 +21,18 @@ func test_main_scene_has_controller_script_attached() -> void:
 	assert_not_null(_main.get_script(), "Main root must have main.gd attached")
 	assert_true(_main.has_method("_on_collected"), "controller wiring present")
 
+
 func test_three_pickups_instanced_in_group() -> void:
 	var pickups := _main.get_tree().get_nodes_in_group("pickup")
 	assert_eq(pickups.size(), 3, "all three pickups instanced and grouped")
+
 
 func test_hud_shows_time_and_score_at_start() -> void:
 	var score: Label = _main.get_node("HUD/ScoreLabel")
 	var time: Label = _main.get_node("HUD/TimeLabel")
 	assert_string_contains(score.text, "Score: 0")
 	assert_string_contains(time.text, "Time:")
+
 
 func test_timer_expiry_drives_game_over_label() -> void:
 	# Drive the controller's own countdown to zero, proving the timer ->
@@ -41,6 +46,7 @@ func test_timer_expiry_drives_game_over_label() -> void:
 	var score: Label = _main.get_node("HUD/ScoreLabel")
 	assert_string_contains(score.text, "Game Over", "timer expiry sets Game Over")
 	assert_true(_main._over, "game marked over")
+
 
 func test_end_panel_shown_with_message_on_game_over() -> void:
 	# The end-of-game panel is hidden during play and appears on game over,
@@ -56,6 +62,7 @@ func test_end_panel_shown_with_message_on_game_over() -> void:
 	var end_label: Label = _main.get_node("HUD/EndPanel/EndLabel")
 	assert_string_contains(end_label.text, "Game Over", "end panel states the outcome")
 
+
 func test_no_collection_after_game_over() -> void:
 	_main._timer.time_left = 0.05
 	for _i in 10:
@@ -67,6 +74,7 @@ func test_no_collection_after_game_over() -> void:
 	_main._on_collected(1)
 	var score: Label = _main.get_node("HUD/ScoreLabel")
 	assert_string_contains(score.text, "Game Over", "no scoring after game over")
+
 
 func test_restart_only_offered_after_game_over() -> void:
 	# Assert the restart DECISION (_wants_restart), not the reload effect. We

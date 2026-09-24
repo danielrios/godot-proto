@@ -5,6 +5,7 @@ extends RefCounted
 ## This is the "least powerful tool" seam: game rules live here as plain
 ## functions the test runner can drive directly.
 
+
 ## Returns a normalized direction vector from the four move actions.
 ## `pressed` maps action name -> bool, so tests inject input without an
 ## InputEvent or a running tree.
