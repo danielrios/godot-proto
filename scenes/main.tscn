@@ -40,3 +40,26 @@ offset_right = 628.0
 offset_bottom = 40.0
 text = "Time: 30"
 horizontal_alignment = 2
+
+[node name="EndPanel" type="Panel" parent="HUD"]
+visible = false
+offset_left = 160.0
+offset_top = 120.0
+offset_right = 480.0
+offset_bottom = 240.0
+
+[node name="EndLabel" type="Label" parent="HUD/EndPanel"]
+offset_left = 0.0
+offset_top = 24.0
+offset_right = 320.0
+offset_bottom = 60.0
+text = "Game Over"
+horizontal_alignment = 1
+
+[node name="RestartLabel" type="Label" parent="HUD/EndPanel"]
+offset_left = 0.0
+offset_top = 72.0
+offset_right = 320.0
+offset_bottom = 100.0
+text = "Press R or Space to play again"
+horizontal_alignment = 1

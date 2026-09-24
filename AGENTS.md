@@ -9,11 +9,11 @@ text, tests run headless, no GUI clicking required.
 
 ## Stack
 - **Engine:** Godot 4.3+, GL Compatibility renderer (works headless/low-end).
-- **Language:** GDScript. Package/`class_name` types: `GameState`, `Movement`.
+- **Language:** GDScript. Package/`class_name` types: `GameState`, `Movement`, `Countdown`.
 - **Layout:**
   - `scripts/` — GDScript. Pure logic (`game_state.gd`, `movement.gd`) is
-    separated from node scripts (`player.gd`, `pickup.gd`, `main.gd`) so rules
-    are unit-testable without the scene tree.
+	separated from node scripts (`player.gd`, `pickup.gd`, `main.gd`) so rules
+	are unit-testable without the scene tree.
   - `scenes/` — `.tscn` (text, diffable): `main`, `player`, `pickup`.
   - `test/unit/` — GUT tests (`test_*.gd`).
 
