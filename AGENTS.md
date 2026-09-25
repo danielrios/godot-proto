@@ -38,12 +38,12 @@ then the full GUT suite. It exits non-zero on any failure.
   **integration test** in `test/integration/` that instances the scene, not a
   pure unit test.
 
-## GUT (vendored)
-GUT (Godot Unit Test) **v9.7.1 is committed** at `addons/gut/` — no install
-step. The runner does a one-time headless `--import` on a fresh checkout (no
-`.godot/` cache yet) so GUT's `class_name`s register before the suite loads.
-To update GUT: replace `addons/gut/` from https://github.com/bitwes/Gut
-(pick a Godot-4 release) and delete `.godot/` to force a re-import.
+## GUT (fetched, not vendored)
+GUT is **not** committed. `scripts/setup.sh` fetches a pinned version (v9.6.1)
+into `addons/gut/` (gitignored); `run_tests.sh` runs setup automatically if the
+addon is missing, then does a headless `--import` so GUT's `class_name`s register
+before the suite loads. To bump GUT: change `GUT_VERSION` in `scripts/setup.sh`
+and delete `.godot/` to force a re-import.
 
 ## Rules for agents
 1. **Least power.** Solve with the simplest thing: a function before a node,

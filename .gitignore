@@ -12,3 +12,6 @@ export_presets.cfg
 # godot-mcp-runtime transient bridge artifacts (auto-created only while a
 # scene is running; the server also self-adds this, kept here for safety)
 .mcp/
+
+# GUT testing addon — fetched by scripts/setup.sh (pinned version), not vendored
+/addons/gut/
