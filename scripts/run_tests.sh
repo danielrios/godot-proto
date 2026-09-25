@@ -3,7 +3,7 @@
 # any failure — the single authoritative "is it green?" for this repo.
 #
 # Requires: Godot 4 on PATH (as `godot` or `godot4`) and the GUT addon at
-# addons/gut/ (install once: see README).
+# addons/gut/ (fetched by scripts/setup.sh; auto-run below if missing).
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
@@ -16,8 +16,8 @@ if [[ -z "$GODOT_BIN" ]]; then
 fi
 
 if [[ ! -d addons/gut ]]; then
-	echo "ERROR: GUT addon missing at addons/gut/. See README 'Install GUT'." >&2
-	exit 1
+	echo "[gate] GUT addon missing — fetching via scripts/setup.sh…"
+	bash scripts/setup.sh
 fi
 
 # Reimport every run: GUT's class_names (GutTest, …) AND any project class_name

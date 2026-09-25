@@ -21,11 +21,18 @@ It's a minimal, reproducible example of a game project structured so an AI agent
 
 ## Requirements
 - **Godot 4.3+** (`godot` or `godot4` on your `PATH`). Verified on 4.7.2.
-- **GUT** (Godot Unit Test) is already vendored at `addons/gut/` (v9.7.1) —
-  nothing to install.
+- **GUT** (Godot Unit Test) is fetched (pinned v9.6.1) by `scripts/setup.sh` —
+  not vendored. `run_tests.sh` runs it automatically if `addons/gut/` is missing.
 - Optional: **[gdtoolkit](https://github.com/Scony/godot-gdscript-toolkit)**
   (`gdlint` / `gdformat`) for the lint/format gate — `pipx install gdtoolkit`.
   The gate skips lint gracefully if it isn't installed.
+
+## First-time setup
+```bash
+./scripts/setup.sh    # fetches the pinned GUT addon into addons/gut/
+```
+Idempotent, and also run on demand by the gate. The GUT version is pinned in
+`scripts/setup.sh`.
 
 ## Run the game
 ```bash
@@ -73,4 +80,4 @@ See [AGENTS.md](AGENTS.md) for the working contract: pure-logic-first design,
 the headless test gate as the authority, and text-only assets.
 
 ## License
-[MIT](LICENSE). GUT (in `addons/gut/`) is also MIT — see `addons/gut/LICENSE.md`.
+[MIT](LICENSE). GUT (fetched into `addons/gut/`) is also MIT.
