@@ -21,7 +21,7 @@ It's a minimal, reproducible example of a game project structured so an AI agent
 
 ## Requirements
 - **Godot 4.3+** (`godot` or `godot4` on your `PATH`). Verified on 4.7.2.
-- **GUT** (Godot Unit Test) is fetched (pinned v9.6.1) by `scripts/setup.sh` —
+- **GUT** (Godot Unit Test) is fetched (pinned v9.7.1) by `scripts/setup.sh` —
   not vendored. `run_tests.sh` runs it automatically if `addons/gut/` is missing.
 - Optional: **[gdtoolkit](https://github.com/Scony/godot-gdscript-toolkit)**
   (`gdlint` / `gdformat`) for the lint/format gate — `pipx install gdtoolkit`.
