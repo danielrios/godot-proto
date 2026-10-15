@@ -39,7 +39,7 @@ then the full GUT suite. It exits non-zero on any failure.
   pure unit test.
 
 ## GUT (fetched, not vendored)
-GUT is **not** committed. `scripts/setup.sh` fetches a pinned version (v9.6.1)
+GUT is **not** committed. `scripts/setup.sh` fetches a pinned version (v9.7.1)
 into `addons/gut/` (gitignored); `run_tests.sh` runs setup automatically if the
 addon is missing, then does a headless `--import` so GUT's `class_name`s register
 before the suite loads. To bump GUT: change `GUT_VERSION` in `scripts/setup.sh`

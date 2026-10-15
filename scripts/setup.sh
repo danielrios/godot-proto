@@ -6,7 +6,7 @@
 # of truth for the dependency version.
 set -euo pipefail
 
-GUT_VERSION="9.6.1"
+GUT_VERSION="9.7.1"
 GUT_TARBALL="https://github.com/bitwes/Gut/archive/refs/tags/v${GUT_VERSION}.tar.gz"
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
